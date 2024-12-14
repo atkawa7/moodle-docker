@@ -243,6 +243,41 @@ if (getenv('MOODLE_DOCKER_RUNNING')) {
 require_once(__DIR__ . '/lib/setup.php'); // Do not edit.
 ```
 
+## SSL certificates
+
+If you wish, you can generate a self-signed certificate repository and create your own certificates for your containers.
+
+Certificates should be placed into the `assets/certs/certs` directory, with the certificate authority placed into `assets/certs/ca`.
+
+If moodle-docker-compose detects the certificate for a local certificate authority at `asserts/certs/ca/ca.pem` then an additional SSL configuration will be included.
+
+To make this easier, a helper has been created for Linux and MacOS which will:
+
+- generate a new certificate authority if required
+- generate certificates
+- offer to install your new Certificate Authority
+
+
+The helper can be used as follows:
+
+```
+./assets/certs/createcerts.sh hostname [alternative-hostname]
+```
+
+You will need to run a separate command for each host you wish to generate a certificate for, for example:
+
+```
+./asserts/certs/createcerts.sh webserver webserver.container.docker.internal
+./asserts/certs/createcerts.sh exttests exttests.container.docker.internal
+```
+
+### Local hostnames
+
+If you wish to access your containers using their certificates, you will need to add either:
+
+- entries to your `/etc/hosts` or `%WinDir%\System32\Drivers\Etc\Hosts` file; or
+- relevant DNS entries to your local DNS resolver (for example dnsmasqd).
+
 ## Local customisations
 
 In some situations you may wish to add local customisations, such as including additional containers, or changing existing containers.

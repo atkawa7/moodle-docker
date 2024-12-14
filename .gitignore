@@ -1,2 +1,8 @@
 local.yml
+<<<<<<< HEAD
 /moodle/
+=======
+assets/certs/certs
+assets/certs/ca
+>>>>>>> 0f5bba81b8e656ff86748de9462127e46eec6102
+.idea
