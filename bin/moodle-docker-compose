@@ -251,5 +251,5 @@ then
   echo "Including local options from ${localfile}"
   dockercompose="${dockercompose} -f ${localfile}"
 fi
-
+echo "$dockercompose"
 $dockercompose "$@"

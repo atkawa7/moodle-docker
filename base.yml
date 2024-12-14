@@ -4,6 +4,7 @@ services:
     depends_on:
       - db
     volumes:
+      - "./dist/moodledata:/var/www/moodledata"
       - "${MOODLE_DOCKER_WWWROOT}:/var/www/html"
       - "${ASSETDIR}/web/apache2_faildumps.conf:/etc/apache2/conf-enabled/apache2_faildumps.conf"
       - "${ASSETDIR}/docker-php-entrypoint-moodle:/usr/local/bin/docker-php-entrypoint-moodle"
@@ -15,5 +16,6 @@ services:
       MOODLE_DOCKER_BROWSER: firefox
       MOODLE_DOCKER_WEB_HOST: "${MOODLE_DOCKER_WEB_HOST}"
       MOODLE_DOCKER_TIMEOUT_FACTOR: "${MOODLE_DOCKER_TIMEOUT_FACTOR}"
+      MOODLE_DOCKER_WEB_PROTOCOL: "${MOODLE_DOCKER_WEB_PROTOCOL}"
     entrypoint: 'docker-php-entrypoint-moodle'
     command: 'apache2-foreground'
